@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { Button, SafeAreaView, ScrollView, Text, View } from "react-native"
-import Animated, { FadeInUp, FadeOutDown, Layout, useAnimatedProps, useSharedValue, withDelay, withRepeat, withTiming } from "react-native-reanimated"
+import Animated, { FadeInUp, FadeOutDown, Layout, useAnimatedProps, useAnimatedStyle, useSharedValue, withDelay, withRepeat, withSequence, withSpring, withTiming } from "react-native-reanimated"
 import Svg, { Path } from "react-native-svg"
 import Header from "../header/Header"
 import Title from "./object/Title"
@@ -11,6 +11,7 @@ import * as Progress from 'react-native-progress';
 import { heightPercentageToDP, widthPercentageToDP } from 'react-native-responsive-screen';
 import Board from "./object/Board"
 import HeaderBottom from "../header/HeaderBottom"
+import Today from "./object/Today"
 const Main =({navigation,route}:any)=>{
     const c1y = useSharedValue(0.2);
     const c2y = useSharedValue(0.8);
@@ -18,31 +19,30 @@ const Main =({navigation,route}:any)=>{
     const [news, setNews] = useState([0,0,0,0,0]);
     const [list_item, setlist_item] = useState([{name:"오늘 입차 대수",value:100},{name:"오늘 출차 대수",value:100},{name:"총 차량 대수",value:100},{name:"교통량",value:0}])
     const [chartdata, setchartdata] = useState({risk:83,traffic:{}})
-    const animatedProps = useAnimatedProps(() => {
-        return {
-          d: [
-            'M 0 0.5',
-            `C 0.3 ${c1y.value}, 0.7 ${c2y.value}, 1 0.5`,
-            'V 1',
-            'H 0',
-          ].join(' '),
-        };
-      });
-  
-    const handleWave = () => {
-        c1y.value = 
-      withRepeat(withTiming(0.8, {duration: 500}), -1, true);
-    c2y.value = withDelay(
-      200,
-      withRepeat(withTiming(0.2, {duration: 500}), -1, true),
-    );
-    };
-  
-    const AnimatedSvg = Animated.createAnimatedComponent(Svg)
-    return(<>
-     <SafeAreaView style={{backgroundColor:"white",flex:1,marginBottom:widthPercentageToDP('10%')}}>
+    const rotation = useSharedValue(0);
+   
+    rotation.value = withSequence(
+ 
+        //withTiming(-10, { duration: 300 }),
+        //withRepeat(withTiming(0.2, { duration: 100 }), 6, true),
+       
+        withTiming(-1 * 10, {
+        duration: 200,
+
+      }),
+      );
+   
+  const animatedStyle = useAnimatedStyle(() => {
     
-<Header nav={navigation.reset} route={route} subtitle={"공독 주택 주차 관제 시스템"}/>
+    return {
+     
+      transform: [{ translateY:rotation.value }],
+    };
+  });
+    return(<>
+     <SafeAreaView style={{backgroundColor:"white",flex:1,marginBottom:heightPercentageToDP('10%')}}>
+    
+<Header nav={navigation.reset} route={route} subtitle={"공동 주택 주차 관제 시스템"}/>
    
   <ScrollView style={{flex:1,flexDirection:"column"}}>
 
@@ -59,7 +59,7 @@ const Main =({navigation,route}:any)=>{
  <Board list_item={list_item}/> 
 
 
-<View style={{flex:1,alignItems:"center",justifyContent:"center"}}>
+<View style={{flex:1,alignItems:"center",justifyContent:"center",marginTop:40}}>
   {/** 
 <CircularProgress
   value={60}
@@ -90,7 +90,7 @@ domainPadding={20}>
 />
 </VictoryChart> */}
 </View>
-        <Text>dfdff</Text> 
+     <Today/>
          
         
          </ScrollView>

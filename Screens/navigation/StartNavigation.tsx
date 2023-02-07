@@ -52,6 +52,7 @@ screenOptions={{ headerShown: false }}>
      options={() => ({cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
       gestureEnabled: false })}
      />
+     
 
      </Stack.Navigator></NavigationContainer></SafeAreaProvider>
     </>)

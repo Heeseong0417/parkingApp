@@ -17,7 +17,10 @@ import MaterialCommunityIcons  from "react-native-vector-icons/MaterialCommunity
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { BottomTabBar, BottomTabBarProps, BottomTabNavigationOptions, createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { heightPercentageToDP, widthPercentageToDP } from 'react-native-responsive-screen';
+import { widthPercentageToDP, heightPercentageToDP } from 'react-native-responsive-screen';
+import Traffic from "../pages/main_pages/Traffic";
+import Safety from "../pages/main_pages/Safety";
+import CarLog from "../pages/main_pages/CarLog";
 //const menu_items =  [{route:"Main",icon:"home",component:Main},{route:"Traffic",icon:"settings",component:Main},{route:"Safety",icon:"wallet",component:Main},{route:"Account",icon:"md-notifications-sharp",component:Main},{route:"CarLog",icon:"md-notifications-sharp",component:Main}]
    
 const AnimatedSvg = Animated.createAnimatedComponent(Svg)
@@ -195,31 +198,31 @@ const BottomTab =({navigation}:any)=>{
      
      style={{backgroundColor:"white"}}
       screenOptions={{lazy:true, tabBarStyle:{backgroundColor:"#0073F0", position:"absolute",bottom:0,left:0,right:0,borderTopLeftRadius:5,borderTopRightRadius:5},
-      tabBarIconStyle: { width: widthPercentageToDP('10%') },
+      tabBarIconStyle: { width: heightPercentageToDP('10%') },
       tabBarLabelStyle:{opacity:0.8, fontFamily:"GmarketSansTTFMedium",fontWeight:"300"}
       ,tabBarShowLabel:false,tabBarActiveTintColor:"#3D5CFF",
-      tabBarContentContainerStyle:{height:widthPercentageToDP("20%")},
+      tabBarContentContainerStyle:{height:heightPercentageToDP("10%")},
       tabBarInactiveTintColor:"#B8B8D2",}}
       
     >
      <Tab.Screen name ={"Main"} component={Main} options={{
-    tabBarIcon:({color,size,focused}:any)=>{return <><Animated.View style={[{alignItems:"center",width:"100%",borderRadius:150},focused?animatedStyle:{}]}><Icon size={widthPercentageToDP("7%")} name={"home"} color={color} />{focused?<Text style={{fontSize:10,marginTop:5, textAlign:"center",fontWeight:"400",opacity:0.9,color:color}}>home</Text>:<></>}</Animated.View></>},    
+    tabBarIcon:({color,size,focused}:any)=>{return <><Animated.View style={[{alignItems:"center",borderRadius:150},focused?animatedStyle:{}]}><Icon size={heightPercentageToDP("3%")} name={"home"} color={color} />{focused?<Text style={{fontSize:10,marginTop:5, textAlign:"center",fontWeight:"400",opacity:0.9,color:color}}>home</Text>:<></>}</Animated.View></>},    
 //tabBarButton: props => <CustomTabBarButton {... props}/>
 }}/>
-<Tab.Screen name ={"Traffic"} component={Main} options={{
-    tabBarIcon:({color,size,focused}:any)=>{return <><Animated.View style={[{alignItems:"center",width:"100%",borderRadius:150, },focused?animatedStyle:{}]}><Icon size={widthPercentageToDP("7%")} name={"settings"} color={color} />{focused?<Text style={{fontSize:10,marginTop:5, textAlign:"center",fontWeight:"400",opacity:0.9,color:color}}>Traffic</Text>:<></>}</Animated.View></>},    
+<Tab.Screen name ={"Traffic"} component={Traffic} options={{
+    tabBarIcon:({color,size,focused}:any)=>{return <><Animated.View style={[{alignItems:"center",borderRadius:150, },focused?animatedStyle:{}]}><Icon size={heightPercentageToDP("3%")} name={"settings"} color={color} />{focused?<Text style={{fontSize:10,marginTop:5, textAlign:"center",fontWeight:"400",opacity:0.9,color:color}}>Traffic</Text>:<></>}</Animated.View></>},    
 //tabBarButton: props => <CustomTabBarButton {... props}/>
 }}/>
-<Tab.Screen name ={"Safety"} component={Main} options={{
-    tabBarIcon:({color,size,focused}:any)=>{return <><Animated.View style={[{alignItems:"center",width:"100%",borderRadius:150, },focused?animatedStyle:{}]}><Icon size={widthPercentageToDP("7%")} name={"wallet"} color={color} />{focused?<Text style={{fontSize:10,marginTop:5, textAlign:"center",fontWeight:"400",opacity:0.9,color:color}}>Safety</Text>:<></>}</Animated.View></>},    
+<Tab.Screen name ={"Safety"} component={Safety} options={{
+    tabBarIcon:({color,size,focused}:any)=>{return <><Animated.View style={[{alignItems:"center",borderRadius:150, },focused?animatedStyle:{}]}><Icon size={heightPercentageToDP("3%")} name={"wallet"} color={color} />{focused?<Text style={{fontSize:10,marginTop:5, textAlign:"center",fontWeight:"400",opacity:0.9,color:color}}>Safety</Text>:<></>}</Animated.View></>},    
 //tabBarButton: props => <CustomTabBarButton {... props}/>
 }}/>
-<Tab.Screen name ={"CarLog"} component={ParkingList} options={{
-    tabBarIcon:({color,size,focused}:any)=>{return <><Animated.View style={[{alignItems:"center",width:"100%",borderRadius:150, },focused?animatedStyle:{}]}><Icon size={widthPercentageToDP("7%")} name={"md-notifications-sharp"} color={color} />{focused?<Text style={{fontSize:10,marginTop:5, textAlign:"center",fontWeight:"400",opacity:0.9,color:color}}>CarLog</Text>:<></>}</Animated.View></>},    
+<Tab.Screen name ={"CarLog"} component={CarLog} options={{
+    tabBarIcon:({color,size,focused}:any)=>{return <><Animated.View style={[{alignItems:"center",borderRadius:150, },focused?animatedStyle:{}]}><Icon size={heightPercentageToDP("3%")} name={"md-notifications-sharp"} color={color} />{focused?<Text style={{fontSize:10,marginTop:5, textAlign:"center",fontWeight:"400",opacity:0.9,color:color}}>CarLog</Text>:<></>}</Animated.View></>},    
 //tabBarButton: props => <CustomTabBarButton {... props}/>
 }}/>
 <Tab.Screen name ={"Account"} component={ParkingList} options={{
-    tabBarIcon:({color,size,focused}:any)=>{return <><Animated.View style={[{alignItems:"center",width:"100%",borderRadius:150, },focused?animatedStyle:{}]}><Icon size={widthPercentageToDP("7%")} name={"md-notifications-sharp"} color={color} />{focused?<Text style={{fontSize:9,marginTop:5, textAlign:"center",fontWeight:"400",opacity:0.9,color:color}}>Account</Text>:<></>}</Animated.View></>},    
+    tabBarIcon:({color,size,focused}:any)=>{return <><Animated.View style={[{alignItems:"center",borderRadius:150, },focused?animatedStyle:{}]}><Icon size={heightPercentageToDP("3%")} name={"md-notifications-sharp"} color={color} />{focused?<Text style={{fontSize:9,marginTop:5, textAlign:"center",fontWeight:"400",opacity:0.9,color:color}}>Account</Text>:<></>}</Animated.View></>},    
 //tabBarButton: props => <CustomTabBarButton {... props}/>
 }}/>
 
