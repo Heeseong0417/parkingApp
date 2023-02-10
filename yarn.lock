@@ -6334,6 +6334,13 @@
   dependencies:
     "prop-types" "^15.7.2"
 
+"react-native-auto-height-image@^3.2.4":
+  "integrity" "sha512-PTVzLuYY4Q5IDAk0QmnSNK12VnUPlt+ZiEJUlo5JUiHverR5Lg386iHK7D2bVkTNo7SCahIPlWzdSuX5Col3XQ=="
+  "resolved" "https://registry.npmjs.org/react-native-auto-height-image/-/react-native-auto-height-image-3.2.4.tgz"
+  "version" "3.2.4"
+  dependencies:
+    "prop-types" "^15.7.2"
+
 "react-native-circular-progress-indicator@^4.4.2":
   "integrity" "sha512-BlgshzIIIk0TP/CZY+5oyRsHl2Sb2l6cK5tzfmrVETfn6pN8dhOKrV0i3Z6i0SM8wRgncdUUSRBpCPAexh7JoQ=="
   "resolved" "https://registry.npmjs.org/react-native-circular-progress-indicator/-/react-native-circular-progress-indicator-4.4.2.tgz"

@@ -103,7 +103,7 @@ const Login =({navigation}:any)=>{
           const data2 = TokenDataStorage.get()
           console.log(data2)
           
-          navigation.reset({routes: [{name: 'BottomTab3'}]})
+          navigation.reset({routes: [{name: 'BottomTab'}]})
          
         }
         else{ Alert.alert("에러가 발생하였습니다! 다시 로그인해주세요")  
@@ -181,7 +181,7 @@ return(<>
                     
            
        </View>
-       <Text>{JSON.stringify(navigation)}</Text>
+
        <TouchableOpacity style={[main.flex_blue_btn,,{marginBottom:20,flex:1,width:"90%"}]} onPress={axios_data}>
 <Text  style={[main.flex_blue_btn_text]}>로그인</Text>
             </TouchableOpacity>

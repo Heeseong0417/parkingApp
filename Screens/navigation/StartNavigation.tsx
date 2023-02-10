@@ -3,6 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { CardStyleInterpolators, createStackNavigator } from "@react-navigation/stack";
 import React from "react"
 import { SafeAreaProvider } from "react-native-safe-area-context"
+import ListItems from "../pages/main_pages/sub_pages/ListItems";
 import Login from "../pages/start_pages/siteIn/Login";
 import Certification from "../pages/start_pages/siteup/Certification";
 import SiteUp from "../pages/start_pages/siteup/SiteUp";
@@ -31,11 +32,9 @@ screenOptions={{ headerShown: false }}>
       <Stack.Screen  name='BottomTab' component={BottomTab}
      options={() => ({cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
       gestureEnabled: false })}
+      
      />
-     <Stack.Screen  name='BottomTab2' component={BottomTab2}
-     options={() => ({cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
-      gestureEnabled: false })}
-     />
+
      <Stack.Screen  name='UserCertifcationForm' component={UserCertifcationForm}
      options={() => ({cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
       gestureEnabled: false })}
@@ -52,7 +51,11 @@ screenOptions={{ headerShown: false }}>
      options={() => ({cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
       gestureEnabled: false })}
      />
-     
+       
+    <Stack.Screen  name='ListItems' component={ListItems}
+     options={() => ({cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
+      gestureEnabled: false })}
+     />
 
      </Stack.Navigator></NavigationContainer></SafeAreaProvider>
     </>)

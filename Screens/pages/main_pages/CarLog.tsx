@@ -17,7 +17,7 @@ import risk from "../../../assets/images/risk.png"
 import Datalist from "./object/Datalist"
 
 const CarLog =({navigation,route}:any)=>{
-const [list_data, setlist_data] = useState([{date:"2023/2/7 18:08:03",carNum:"38가1234",image:""},{date:"2023/2/7 18:08:04",carNum:"38가1234",image:""},{date:"2023/2/7 18:08:11",carNum:"38가1234",image:""}])
+const [list_data, setlist_data] = useState([{date:"2023/2/7 18:08:03",division:"입차",carNum:"38가1234",image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPgPbNgyx2V4gVrVfODdRx6QYTAI2-0StHn6vcVQ5g3A&s"},{date:"2023/2/7 18:08:04",division:"입차",carNum:"38가1234",image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEIeErVV0A09NEtN_bQrZOcDLXK8PBQWC3XWqpcwjmww&s"},{date:"2023/2/7 18:08:11",division:"입차",carNum:"38가1234",image:""}])
     return(<>
      <SafeAreaView style={{backgroundColor:"white",flex:1,marginBottom:heightPercentageToDP("10%")}}>
     
@@ -29,7 +29,7 @@ const [list_data, setlist_data] = useState([{date:"2023/2/7 18:08:03",carNum:"38
     <View style={[{flex:1,margin:10,padding:10,opacity:1}]}>
     <Rbox title={"나의 주차 정보"}/>
     <View style={{flex:1,alignItems:"center",justifyContent:"center",marginTop:30}}>
-      <Datalist list_item={list_data}/>
+      <Datalist list_item={list_data} navigation={route.params.navigate}/>
     </View></View></ScrollView>
     </SafeAreaView>
     </>)

@@ -16,8 +16,9 @@ import Rbox from "./object/Rbox"
 import Chart from "./object/Chart"
 const Traffic =({navigation,route}:any)=>{
     const rotation = useSharedValue(0);
-    const [chart_data, setchart_data] = useState([{x:"dddd",y:10},{x:"dddd2",y:20},{x:"dddd3",y:30},{x:"dddd4",y:20},{x:"dddd5",y:40}])
-    rotation.value = withSequence(
+    //const [chart_data, setchart_data] = useState([{x:"1",y:10},{x:"2",y:20},{x:"3",y:30},{x:"4",y:20},{x:"5",y:40},{x:"6",y:40},{x:"7",y:40},{x:"8",y:40},{x:"9",y:40},{x:"10",y:40},{x:"11",y:40},{x:"12",y:40},{x:"13",y:40},{x:"14",y:40},{x:"15",y:40},{x:"16",y:40},{x:"17",y:40},{x:"18",y:40},{x:"19",y:40},{x:"20",y:40},{x:"21",y:40},{x:"22",y:40},{x:"23",y:40},{x:"24",y:40}])
+   const [chart_data, setchart_data] = useState([{x:"0시",y:10,index:0},{x:"1시",y:20,index:1},{x:"2시",y:20,index:2},{x:"3시",y:20,index:3},{x:"4시",y:20,index:4},,{x:"5시",y:20,index:5},{x:"6시",y:20,index:6}])
+   rotation.value = withSequence(
  
         //withTiming(-10, { duration: 300 }),
         withRepeat(withTiming(1, { duration: 200 }), 6, true),

@@ -44,7 +44,7 @@ return(
        
         <Text style={[main.text_b,{color:"#0073F0",fontWeight:"bold"}]}>가입하기</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={()=>navigation.navigate('BottomTab')} style={[main.r_button,{backgroundColor:"white",opacity:0.9},main.shadow]}>
+        <TouchableOpacity onPress={()=>navigation.navigate('Login')} style={[main.r_button,{backgroundColor:"white",opacity:0.9},main.shadow]}>
         <Text style={[main.text_b,{color:"#0073F0",fontWeight:"bold"}]}>시작하기</Text>
         </TouchableOpacity>       
     </View>

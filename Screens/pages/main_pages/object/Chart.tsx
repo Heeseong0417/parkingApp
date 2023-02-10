@@ -1,9 +1,10 @@
 import { View } from "react-native"
-import { VictoryAxis, VictoryBar, VictoryChart, VictoryLine, VictoryTheme } from "victory-native"
+import { VictoryAxis, VictoryBar, VictoryChart, VictoryLine, VictoryTheme, VictoryZoomContainer } from "victory-native"
 import { main, width_ } from "../../../../style/NS"
 
 
 const Chart =({data}:any)=>{
+
 
 
     return(<>
@@ -18,12 +19,18 @@ const Chart =({data}:any)=>{
       height={width_*340}
 theme={VictoryTheme.grayscale}
 domainPadding={50}
+containerComponent={
+  <VictoryZoomContainer responsive={false}
+    zoomDimension="x"
+    zoomDomain={data}
 
+  />
+}
 >
      <VictoryAxis
           name='name'
           dependentAxis
-        
+          
           style={{
             axis: { stroke: 'transparent' },
             tickLabels: { fill: '#94A2AD' },
@@ -35,6 +42,10 @@ domainPadding={50}
             },
           }}
         />
+         <VictoryAxis 
+         
+         tickFormat={(t,i)=>(i)%3==0?t:""}
+         />
 <VictoryBar
 cornerRadius={5}
  style={{ data: { fill: "#b8b8d2" } }}
@@ -47,7 +58,8 @@ cornerRadius={5}
       parent: { border: "1px solid #ccc"}
     }}
     data={data}
-    labels={({ datum }) => datum.y}
+    labels={({ datum }) => datum.index%3==0?datum.y:""}
+   
   />
 </VictoryChart>
         </View>
