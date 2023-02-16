@@ -182,7 +182,7 @@ return(<>
            
        </View>
 
-       <TouchableOpacity style={[main.flex_blue_btn,,{marginBottom:20,flex:1,width:"90%"}]} onPress={axios_data}>
+       <TouchableOpacity style={[main.flex_blue_btn,{marginBottom:20,flex:1,width:"90%"}]} onPress={axios_data}>
 <Text  style={[main.flex_blue_btn_text]}>로그인</Text>
             </TouchableOpacity>
        </View>

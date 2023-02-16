@@ -10,7 +10,10 @@ const UserCertifcationForm =({navigation}:any)=>{
     const [selectedLanguage, setSelectedLanguage] = useState();
    const [company, setcompany] = useState("valiantdata")
    const [carrier, setCarrier] = useState("SKT")
+   const [tierCode, setTierCode] = useState('imp04335465');//imp04335465
+   const [merchantUid, setMerchantUid] = useState(`mid_${new Date().getTime()}`);
 const [form, setform] = useState({user:{ name:"이희승", Pnumber:""}
+
 })
 
 
@@ -81,14 +84,14 @@ const [form, setform] = useState({user:{ name:"이희승", Pnumber:""}
              {
               const data = {
                 params: {
-                  merchant_uid: "merchant_uid",
-                  company:company,
-                  carrier:carrier,
+                  merchant_uid:merchantUid,
+                  company,
+                  carrier,
                   name:form.user.name,
                   phone:form.user.Pnumber,
-                  
+                                  
                 },
-                tierCode:'imp04335465'
+                tierCode
               }
               //Alert.alert(JSON.stringify(data))
               form.user.name===""||form.user.Pnumber ==="" ? (Alert.alert("이름과 전화번호를 정확히 입력하세요.")):navigation.navigate('Certification', data)

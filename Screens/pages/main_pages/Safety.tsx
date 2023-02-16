@@ -1,5 +1,5 @@
-import React, { useState } from "react"
-import { Button, SafeAreaView, ScrollView, Text, View, Image } from "react-native"
+import React, { useCallback, useState } from "react"
+import { Button, SafeAreaView, ScrollView, Text, View, Image, RefreshControl } from "react-native"
 import Animated, { FadeInUp, FadeOutDown, Layout, useAnimatedProps, useAnimatedStyle, useSharedValue, withDelay, withRepeat, withSequence, withSpring, withTiming } from "react-native-reanimated"
 import Svg, { Path } from "react-native-svg"
 import Header from "../header/Header"
@@ -16,14 +16,23 @@ import Rbox from "./object/Rbox"
 import risk from "../../../assets/images/risk.png"
 
 const Safety =({navigation,route}:any)=>{
-
+  const [refreshing, setRefreshing] = useState(false);
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+   
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 2000);
+  }, []);
 
     return(<>
        <SafeAreaView style={{backgroundColor:"white",flex:1,marginBottom:heightPercentageToDP("10%")}}>
     
     <Header nav={navigation.reset} route={route} subtitle={"공동 주택 주차 관제 시스템"}/>
        
-      <ScrollView style={{flex:1,flexDirection:"column"}}>
+      <ScrollView style={{flex:1,flexDirection:"column"}} refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }>
     
     
     <View style={[{flex:1,margin:10,padding:10,opacity:1}]}>

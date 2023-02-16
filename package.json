@@ -42,6 +42,7 @@
     "react-native-vector-icons": "^9.2.0",
     "react-native-webview": "^11.26.0",
     "reanimated": "^0.0.1-alpha",
+    "socket.io-client": "^4.6.0",
     "victory-native": "^36.6.8"
   },
   "devDependencies": {
