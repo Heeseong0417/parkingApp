@@ -110,7 +110,10 @@ const axios_data =()=>{
     <Rbox title={"나의 주차 정보"}/>
     <View style={{flex:1,alignItems:"center",justifyContent:"center",marginTop:30}}>
       <Datalist list_item={list_data} navigation={route.params.navigate}/>
-    </View></View></ScrollView>
+    </View></View>
+    
+    
+    </ScrollView>
     </SafeAreaView>
     </>)
 }

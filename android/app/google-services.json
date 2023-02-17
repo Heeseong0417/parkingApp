@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1014301655506",
+    "project_id": "parking-db-6c5b5",
+    "storage_bucket": "parking-db-6c5b5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1014301655506:android:14c7fb8bb811e9ccb8880b",
+        "android_client_info": {
+          "package_name": "com.traficsafetyculture"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1014301655506-f7mlpi3p5v4iao3cptqcjc33on7sevq7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAzKWhf82H4GMhavBrEm4VVeq-zibLV-0k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1014301655506-f7mlpi3p5v4iao3cptqcjc33on7sevq7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,7 +1,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
   package="com.traficsafetyculture">
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+<uses-permission android:name="android.permission.VIBRATE" />
+<uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+<uses-permission android:name="android.permission.WAKE_LOCK" />
+<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+<permission
+  android:name="${applicationId}.permission.C2D_MESSAGE"
+  android:protectionLevel="signature" />
+<uses-permission android:name="${applicationId}.permission.C2D_MESSAGE" />
 
-    <uses-permission android:name="android.permission.INTERNET" />
+
+<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 
     <application
     android:usesCleartextTraffic="true"
@@ -13,6 +24,16 @@
       android:allowBackup="true"
       android:forceDarkAllowed="false"
       android:theme="@style/AppTheme">
+       <receiver android:name="com.dieam.reactnativepushnotification.modules.RNPushNotificationPublisher" android:exported="true"/>
+  <receiver android:name="com.dieam.reactnativepushnotification.modules.RNPushNotificationBootEventReceiver" android:exported="true">
+    <intent-filter>
+      <action android:name="android.intent.action.BOOT_COMPLETED" />
+    </intent-filter>
+  </receiver>
+
+  <service android:name="com.dieam.reactnativepushnotification.modules.RNPushNotificationRegistrationService"/>
+  <service android:name="com.dieam.reactnativepushnotification.modules.RNPushNotificationListenerService" android:exported="false" />
+  <service android:name="com.dieam.reactnativepushnotification.modules.RNPushNotificationOpenReceiver" />
       <activity
       android:screenOrientation="portrait"
         android:name=".MainActivity"
@@ -21,7 +42,8 @@
         android:launchMode="singleTask"
         android:windowSoftInputMode="adjustResize"
         android:exported="true">
-        
+
+
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />

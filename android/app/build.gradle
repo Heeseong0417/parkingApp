@@ -249,6 +249,9 @@ android {
 }
 
 dependencies {
+    implementation "com.google.android.gms:play-services-gcm:17.0.0" // React Native Push Notification dependency
+    implementation "com.google.firebase:firebase-messaging:20.1.0" // React Native Push Notification dependency
+    implementation project(':react-native-push-notification')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'com.facebook.fresco:fresco:1.+'
     implementation 'com.facebook.fresco:animated-gif:1.+'
