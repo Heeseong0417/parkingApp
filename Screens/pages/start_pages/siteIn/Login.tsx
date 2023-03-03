@@ -16,7 +16,7 @@ const Login =({navigation}:any)=>{
     const [users_data, setusers_data] = useState({id:"",password:""})
     const [loading, setloading] = useState(false)
     const axios_data =()=>{
- 
+    const headers = {headers:{"Access-Control-Allow-Origin": "*"}}
   //setloading((data)=> data = true)
         const Uri = IP+'/site_in'
        // const Uri_p = 'http://10.0.2.2:8080/parent'
@@ -31,7 +31,7 @@ const Login =({navigation}:any)=>{
         //Alert.alert(JSON.stringify(data_test))
         
         
-        axios.post(Uri, data_test).then(function (response) {
+        axios.post(Uri, data_test,headers).then(function (response) {
           
           console.log(JSON.stringify(response.data))
             /**
@@ -111,7 +111,7 @@ const Login =({navigation}:any)=>{
          }
 
         }).catch(function (error) {
-          console.log(error);
+          console.log((error));
          Alert.alert("에러가 발생하였습니다! 다시 로그인해주세요") 
          
         })

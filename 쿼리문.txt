@@ -1,0 +1,17 @@
+입출차대수
+
+SELECT (SELECT COUNT(입차시간) FROM parking_table WHERE DATE_FORMAT(입차시간,'%Y-%m-%d %T') BETWEEN DATE_FORMAT(now(), '%Y-%m-%d 00:00:00') AND DATE_FORMAT(now(), '%Y-%m-%d 23:59:59'))AS '오늘 입차 대수',
+(SELECT COUNT(출차시간) FROM parking_table WHERE DATE_FORMAT(출차시간,'%Y-%m-%d %T') BETWEEN DATE_FORMAT(now(), '%Y-%m-%d 00:00:00') AND DATE_FORMAT(now(), '%Y-%m-%d 23:59:59')) AS '오늘 출차 대수'
+
+
+시간별 통계
+SELECT HOUR(입차시간) AS x, COUNT(입차시간) AS y 
+FROM parking_table
+WHERE DATE_FORMAT(입차시간,'%Y-%m-%d %T') BETWEEN DATE_FORMAT(now(), '%Y-%m-%d 00:00:00') AND DATE_FORMAT(now(), '%Y-%m-%d 23:59:59')
+GROUP BY x
+ORDER BY x ASC
+
+
+
+요일별 통계
+SELECT 입차_요일 as x,COUNT(입차_요일) as y FROM parking_table WHERE DATE_FORMAT(입차시간,'%Y-%m-%d %T') BETWEEN DATE_ADD(NOW(), INTERVAL -1 WEEK ) AND NOW() GROUP BY 입차_요일;

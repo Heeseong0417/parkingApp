@@ -10,11 +10,11 @@ const Chart =({data}:any)=>{
     return(<>
     <View style={[{flexDirection:"row",flexWrap:"nowrap",margin:10,borderRadius:5,backgroundColor:"white",justifyContent:"center",alignItems:"center"},main.shadow]}>
     <VictoryChart
-     
+     /**
      animate={{
        duration: 1000,
        onLoad: { duration: 1000 }
-     }}
+     }} */
       width={width_*340}
       height={width_*340}
 theme={VictoryTheme.grayscale}

@@ -128,12 +128,7 @@ const Main =({navigation,route}:any)=>{
         />
 <Header nav={navigation.reset} route={route} subtitle={"공동 주택 주차 관제 시스템"}/>
    
-  <ScrollView style={{flex:1,flexDirection:"column"}}  refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-        }>
-          
-          
-
+  <ScrollView style={{flex:1,flexDirection:"column"}}  refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
 
 <View style={[{flex:1,borderRadius:5,margin:10,padding:10,opacity:1,borderWidth:0.1}]}>
 <Text style={{margin:10,fontWeight:"bold",color:"black",opacity:0.8}}>교통 위험도</Text>
