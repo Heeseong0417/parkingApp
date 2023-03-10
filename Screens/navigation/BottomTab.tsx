@@ -76,7 +76,7 @@ const BottomTab =({navigation}:any)=>{
      tabBarPosition="bottom"
      
      style={{backgroundColor:"white"}}
-      screenOptions={{lazy:false, tabBarStyle:{backgroundColor:"#0073F0", position:"absolute",bottom:0,left:0,right:0,borderTopLeftRadius:5,borderTopRightRadius:5},
+      screenOptions={{lazy:true, tabBarStyle:{backgroundColor:"#0073F0", position:"absolute",bottom:0,left:0,right:0,borderTopLeftRadius:5,borderTopRightRadius:5},
       tabBarIconStyle: { width: heightPercentageToDP('10%') },
       tabBarLabelStyle:{opacity:0.8, fontFamily:"GmarketSansTTFMedium",fontWeight:"300"}
       ,tabBarShowLabel:false,tabBarActiveTintColor:"#3D5CFF",
@@ -91,21 +91,21 @@ const BottomTab =({navigation}:any)=>{
 
 />
 <Tab.Screen name ={"Traffic"} component={Traffic} options={{
-    tabBarIcon:({color,size,focused}:any)=>{return <><Animated.View style={[{alignItems:"center",borderRadius:150, },focused?animatedStyle:{}]}><Icon size={heightPercentageToDP("3%")} name={"settings"} color={color} />{focused?<Text style={{fontSize:10,marginTop:5, textAlign:"center",fontWeight:"400",opacity:0.9,color:color}}>Traffic</Text>:<></>}</Animated.View></>},    
+    tabBarIcon:({color,size,focused}:any)=>{return <><Animated.View style={[{alignItems:"center",borderRadius:150, },focused?animatedStyle:{}]}><Icon size={heightPercentageToDP("3%")} name={"car-sharp"} color={color} />{focused?<Text style={{fontSize:10,marginTop:5, textAlign:"center",fontWeight:"400",opacity:0.9,color:color}}>Traffic</Text>:<></>}</Animated.View></>},    
 //tabBarButton: props => <CustomTabBarButton {... props}/>
 }}/>
 <Tab.Screen name ={"Safety"} component={Safety} options={{
-    tabBarIcon:({color,size,focused}:any)=>{return <><Animated.View style={[{alignItems:"center",borderRadius:150, },focused?animatedStyle:{}]}><Icon size={heightPercentageToDP("3%")} name={"wallet"} color={color} />{focused?<Text style={{fontSize:10,marginTop:5, textAlign:"center",fontWeight:"400",opacity:0.9,color:color}}>Safety</Text>:<></>}</Animated.View></>},    
+    tabBarIcon:({color,size,focused}:any)=>{return <><Animated.View style={[{alignItems:"center",borderRadius:150, },focused?animatedStyle:{}]}><Icon size={heightPercentageToDP("3%")} name={"shield-checkmark"} color={color} />{focused?<Text style={{fontSize:10,marginTop:5, textAlign:"center",fontWeight:"400",opacity:0.9,color:color}}>Safety</Text>:<></>}</Animated.View></>},    
 //tabBarButton: props => <CustomTabBarButton {... props}/>
 }}/>
 <Tab.Screen name ={"CarLog"} component={CarLog} options={{
-    tabBarIcon:({color,size,focused}:any)=>{return <><Animated.View style={[{alignItems:"center",borderRadius:150, },focused?animatedStyle:{}]}><Icon size={heightPercentageToDP("3%")} name={"md-notifications-sharp"} color={color} />{focused?<Text style={{fontSize:10,marginTop:5, textAlign:"center",fontWeight:"400",opacity:0.9,color:color}}>CarLog</Text>:<></>}</Animated.View></>},    
+    tabBarIcon:({color,size,focused}:any)=>{return <><Animated.View style={[{alignItems:"center",borderRadius:150, },focused?animatedStyle:{}]}><Icon size={heightPercentageToDP("3%")} name={"md-list-sharp"} color={color} />{focused?<Text style={{fontSize:10,marginTop:5, textAlign:"center",fontWeight:"400",opacity:0.9,color:color}}>CarLog</Text>:<></>}</Animated.View></>},    
 //tabBarButton: props => <CustomTabBarButton {... props}/>
 }}
 initialParams={navigation}
 />
 <Tab.Screen name ={"Account"} component={Account} options={{
-    tabBarIcon:({color,size,focused}:any)=>{return <><Animated.View style={[{alignItems:"center",borderRadius:150, },focused?animatedStyle:{}]}><Icon size={heightPercentageToDP("3%")} name={"md-notifications-sharp"} color={color} />{focused?<Text style={{fontSize:9,marginTop:5, textAlign:"center",fontWeight:"400",opacity:0.9,color:color}}>Account</Text>:<></>}</Animated.View></>},    
+    tabBarIcon:({color,size,focused}:any)=>{return <><Animated.View style={[{alignItems:"center",borderRadius:150, },focused?animatedStyle:{}]}><Icon size={heightPercentageToDP("3%")} name={"ios-settings-sharp"} color={color} />{focused?<Text style={{fontSize:9,marginTop:5, textAlign:"center",fontWeight:"400",opacity:0.9,color:color}}>Account</Text>:<></>}</Animated.View></>},    
 //tabBarButton: props => <CustomTabBarButton {... props}/>
 }}/>
 

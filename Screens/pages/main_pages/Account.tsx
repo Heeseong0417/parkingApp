@@ -43,7 +43,9 @@ const Account =({navigation,route}:any)=>{
     return result
     //return year+'/'+month+'/'+day+'/'+dayName+'-'+localTime;
   }
+
   useEffect(() => {
+
     //notification_set("hello","my channel~")
   
     return () => {

@@ -13,9 +13,15 @@ import { notification_run, notification_set } from './Screens/Notification/notif
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import IonIcon from "react-native-vector-icons/Ionicons"
 import Set_permission from './Screens/Notification/Set_permissions';
+
+import PushNotificationIOS from "@react-native-community/push-notification-ios";
+import messaging from "@react-native-firebase/messaging";
   ///////////////////////////////권한요청///////////////////////////////////////////////////////////////
   
     ///////////////////////////////권한요청///////////////////////////////////////////////////////////////
+ messaging().setBackgroundMessageHandler(async (remoteMessage) => {
+  console.log("Message handled in the background!", remoteMessage);
+});
 
 const App = () => {
   const [splash, setsplash] = useState(true)
@@ -30,6 +36,18 @@ const App = () => {
     AppState.addEventListener('change', handleAppStateChange);
   }
 
+  const getFcmToken = async () => {
+    const fcmToken = await messaging().getToken();
+    console.log('[FCM Token] ', fcmToken);
+  };
+ 
+  useEffect(() => {
+    getFcmToken();
+    const unsubscribe = messaging().onMessage(async remoteMessage => {
+      console.log('[Remote Message] ', JSON.stringify(remoteMessage));
+    });
+    return unsubscribe;
+  }, []);
 
 
   const handleAppStateChange = (appState:any) => {
@@ -37,6 +55,7 @@ const App = () => {
       console.log("print ! ")
       notification_run("title1",null,"hello","car")
     }
+
 }
 
   /** 
@@ -151,9 +170,6 @@ splash ? (<>
 
 <View style={{backgroundColor:"#0073F0",flex:1,justifyContent:"center"}}><Image animation={"fadeInUp"} source={parking_no_move}  style={{resizeMode:"contain",width:"100%",height:"100%"}} /></View></>):(pm?(<StartNavigation/>):(<Set_permission/>))}
 
-    
-    
-    
     </>);
 };
 

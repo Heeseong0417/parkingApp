@@ -1,33 +1,62 @@
 {
   "project_info": {
-    "project_number": "1014301655506",
-    "project_id": "parking-db-6c5b5",
-    "storage_bucket": "parking-db-6c5b5.appspot.com"
+    "project_number": "213528613135",
+    "project_id": "traficsafetyculture",
+    "storage_bucket": "traficsafetyculture.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1014301655506:android:14c7fb8bb811e9ccb8880b",
+        "mobilesdk_app_id": "1:213528613135:android:ef3728006d454ef72dee7a",
         "android_client_info": {
           "package_name": "com.traficsafetyculture"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1014301655506-f7mlpi3p5v4iao3cptqcjc33on7sevq7.apps.googleusercontent.com",
+          "client_id": "213528613135-de0td4glv93drk6m801mjgjib75fcl4r.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAzKWhf82H4GMhavBrEm4VVeq-zibLV-0k"
+          "current_key": "AIzaSyAP5M_TcdbMFUvVHz-18dAgFrGnc-3RbqE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1014301655506-f7mlpi3p5v4iao3cptqcjc33on7sevq7.apps.googleusercontent.com",
+              "client_id": "213528613135-de0td4glv93drk6m801mjgjib75fcl4r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:213528613135:android:c129a695fc8b86912dee7a",
+        "android_client_info": {
+          "package_name": "com.valiantdata.TrafficSafetyCulture"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "213528613135-de0td4glv93drk6m801mjgjib75fcl4r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAP5M_TcdbMFUvVHz-18dAgFrGnc-3RbqE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "213528613135-de0td4glv93drk6m801mjgjib75fcl4r.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

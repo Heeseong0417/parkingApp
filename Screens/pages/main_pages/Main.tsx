@@ -26,7 +26,7 @@ const Main =({navigation,route}:any)=>{
     const AnimatedPath = Animated.createAnimatedComponent(Path);
     const [news, setNews] = useState([0,0,0,0,0]);
     const [list_item, setlist_item] = useState([{name:"오늘 입차 대수",value:100},{name:"오늘 출차 대수",value:100},{name:"총 차량 대수",value:100},{name:"교통량",value:0}])
-    const [chartdata, setchartdata] = useState({risk:83,traffic:{}})
+    const [chartdata, setchartdata] = useState(83)
     const rotation = useSharedValue(0);
     const [token, settoken] = useState({access_token:"",refresh_token:"",userId:""})
     const [list_data, listdata] = useState({})
@@ -66,15 +66,18 @@ const Main =({navigation,route}:any)=>{
       setloading(true)
       axios.defaults.headers.common["Authorization"] = `Bearer ${token.access_token}`;
       //setloading((data)=> data = true)
-            const Uri = IP+'/parking_main'
+            const Uri = IP+'/main_pages'
            // const Uri_p = 'http://10.0.2.2:8080/parent'
            let header ={headers:{"Content-Type":"application/json; charset=utf-8"}}
        
             
             
             axios.post(Uri,toDay(),header).then(function (response) {
-              setlist_item(data=> data  = response.data)
-              console.log(JSON.stringify(response.data))
+              console.log("메인데이터")
+              const result =response.data
+              setchartdata(data=> data = result["risk"])
+              setlist_item(data=> data=[{name:"오늘 입차 대수",value:result["in_"]},{name:"오늘 출차 대수",value:result["out_"]},{name:"총 차량 대수",value:result["all_"]},{name:"교통량",value:result["traffic"]}])
+              //console.log(JSON.stringify(response.data))
               setTimeout(function() {
                  setloading(false)
               }, 500);
@@ -134,8 +137,8 @@ const Main =({navigation,route}:any)=>{
 <Text style={{margin:10,fontWeight:"bold",color:"black",opacity:0.8}}>교통 위험도</Text>
 <View style={{flexDirection:"row",flexWrap:"nowrap",margin:10}}>
 
-<Progress.Bar progress={chartdata.risk} style={[{flex:1,margin:10},main.shadow]} animated	={true} />
-<Text >{chartdata.risk} %</Text>
+<Progress.Bar progress={chartdata ==0 ?0.1:chartdata} color={chartdata ==0 ? "green":chartdata>0 && chartdata<0.7 ? "yellow":"red"} style={[{flex:1,margin:10},main.shadow]} animated	={true} />
+<Text >{chartdata ==0 ? "저위험":chartdata>0 && chartdata<0.7 ? "중위험":"고위험"} </Text>
 </View>
 </View>
 <Text style={{margin:10,marginLeft:30,fontWeight:"bold",color:"black",opacity:0.8}}>교통량</Text>

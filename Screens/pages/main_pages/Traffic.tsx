@@ -34,7 +34,7 @@ const Traffic =({navigation,route}:any)=>{
     setloading(true)
     axios.defaults.headers.common["Authorization"] = `Bearer ${token.access_token}`;
     //setloading((data)=> data = true)
-          const Uri = IP+'/today_chart'
+          const Uri = IP+'/main_pages'
           
          // const Uri_p = 'http://10.0.2.2:8080/parent'
          let header ={headers:{"Content-Type":"application/json; charset=utf-8"}}
@@ -42,12 +42,15 @@ const Traffic =({navigation,route}:any)=>{
           
           
           axios.post(Uri,token,header).then(function (response) {
-            setchart_data(data=> data  = response.data)
-            console.log(JSON.stringify(response.data))
+            const result =response.data
+            console.log(result["hourAvg"])
+            let c1 = JSON.parse(result["hourAvg"])
+            let c2 = JSON.parse(result["weekAvg"])
+            setchart_data(data=> data  = [c1,c2])
+            //console.log(JSON.stringify(response.data))
             setTimeout(function() {
                setloading(false)
-            }, 500);
-           
+            }, 500);    
           }).catch(function (error) {
             console.log(error);
             setloading(false)

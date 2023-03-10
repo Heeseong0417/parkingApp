@@ -1,0 +1,5 @@
+dn : 주야 7~17 주 , else 야
+날씨
+sum : 교통량
+sum_weight 교통량 가중치
+road_risk 거리위험도

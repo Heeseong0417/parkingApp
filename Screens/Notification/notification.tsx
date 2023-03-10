@@ -15,6 +15,7 @@ export  const notification_set =(id:any,name:any)=>{
         (created) => console.log(`createChannel returned '${created}'`) )
   
 }
+
 export const notification_run=(title:any,message:any,id:any,data:any)=>{
     return PushNotification.localNotificationSchedule({
         title:title?title:'공동주택 주차관제 시스템',
