@@ -1,4 +1,4 @@
-import { View } from "react-native"
+import { Text, View } from "react-native"
 import { VictoryAxis, VictoryBar, VictoryChart, VictoryLine, VictoryTheme, VictoryZoomContainer } from "victory-native"
 import { main, width_ } from "../../../../style/NS"
 
@@ -9,6 +9,7 @@ const Chart =({data}:any)=>{
 
     return(<>
     <View style={[{flexDirection:"row",flexWrap:"nowrap",margin:10,borderRadius:5,backgroundColor:"white",justifyContent:"center",alignItems:"center"},main.shadow]}>
+   
     <VictoryChart
      /**
      animate={{
@@ -19,6 +20,7 @@ const Chart =({data}:any)=>{
       height={width_*340}
 theme={VictoryTheme.grayscale}
 domainPadding={50}
+
 containerComponent={
   <VictoryZoomContainer responsive={false}
     zoomDimension="x"
@@ -45,6 +47,7 @@ containerComponent={
          <VictoryAxis 
          
          tickFormat={(t,i)=>(i)%3==0?t:""}
+         
          />
 <VictoryBar
 cornerRadius={5}
@@ -58,11 +61,12 @@ cornerRadius={5}
       parent: { border: "1px solid #ccc"}
     }}
     data={data}
-    labels={({ datum }) => datum.index%3==0?datum.y:""}
+    labels={({ datum }) => datum.y%3==0?datum.y:""}
    
   />
 </VictoryChart>
-        </View>
+        </View> 
+       
     </>)
 }
 export default Chart 

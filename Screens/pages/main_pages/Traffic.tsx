@@ -17,20 +17,22 @@ import Chart from "./object/Chart"
 import { IP } from "../../../util/ServerPath"
 import axios from "axios"
 import TokenDataStorage from "../../../util/TokenDataStorage"
+import toDay from "./object/Today_time"
+import StorageSave from "../../../util/StorageSave"
 const Traffic =({navigation,route}:any)=>{
-    const rotation = useSharedValue(0);
+const rotation = useSharedValue(0);
     //const [chart_data, setchart_data] = useState([{x:"1",y:10},{x:"2",y:20},{x:"3",y:30},{x:"4",y:20},{x:"5",y:40},{x:"6",y:40},{x:"7",y:40},{x:"8",y:40},{x:"9",y:40},{x:"10",y:40},{x:"11",y:40},{x:"12",y:40},{x:"13",y:40},{x:"14",y:40},{x:"15",y:40},{x:"16",y:40},{x:"17",y:40},{x:"18",y:40},{x:"19",y:40},{x:"20",y:40},{x:"21",y:40},{x:"22",y:40},{x:"23",y:40},{x:"24",y:40}])
-   const [chart_data, setchart_data] = useState([[{x:"0시",y:10,index:0}],[{x:"월요일",y:0}]])
+const [chart_data, setchart_data] = useState([[{x:"0시",y:10,index:0}],[{x:"월요일",y:0}]])
+const [alldatas, setalldatas] = useState({"hourAvg":'[{"x":0,"y":0}]',"weekAvg":'[{"x":"월요일","y":0}]'})
 
-
-   const [refreshing, setRefreshing] = useState(false);
-   const [token, settoken] = useState({access_token:"",refresh_token:"",userId:""})
-   const [list_data, listdata] = useState({})
-   const [loading, setloading] = useState(false)
+const [refreshing, setRefreshing] = useState(false);
+const [token, settoken] = useState({access_token:"",refresh_token:"",userId:""})
+const [list_data, listdata] = useState({})
+const [loading, setloading] = useState(false)
 
 
    const axios_data =()=>{
-      
+       
     setloading(true)
     axios.defaults.headers.common["Authorization"] = `Bearer ${token.access_token}`;
     //setloading((data)=> data = true)
@@ -41,13 +43,16 @@ const Traffic =({navigation,route}:any)=>{
      
           
           
-          axios.post(Uri,token,header).then(function (response) {
+          axios.post(Uri,toDay(),header).then(function (response) {
             const result =response.data
-            console.log(result["hourAvg"])
+     
+            StorageSave.set(result).catch(console.error);
+            /** 
+            console.log( JSON.parse(result["hourAvg"]))
             let c1 = JSON.parse(result["hourAvg"])
             let c2 = JSON.parse(result["weekAvg"])
             setchart_data(data=> data  = [c1,c2])
-            //console.log(JSON.stringify(response.data))
+            //console.log(JSON.stringify(response.data))**/
             setTimeout(function() {
                setloading(false)
             }, 500);    
@@ -69,9 +74,17 @@ const Traffic =({navigation,route}:any)=>{
       
       }
   useEffect(() => {TokenDataStorage.get().then(settoken)
+    StorageSave.get().then(setalldatas)
     //axios_data()
   }, [])
-  useEffect(() => {axios_data()}, [token])
+  useEffect(() => {
+   // console.log( JSON.parse(alldatas["hourAvg"]))
+            //let c1 = JSON.parse(alldatas["hourAvg"])
+            //let c2 = JSON.parse(alldatas["weekAvg"])
+            //setchart_data(data=> data  = [c1,c2])
+  }
+  
+  , [token])
 
  /** 
    rotation.value = withSequence(
@@ -95,7 +108,10 @@ const Traffic =({navigation,route}:any)=>{
   const onRefresh = useCallback(() => {
     setRefreshing(true);
     TokenDataStorage.get().then(settoken)
-    axios_data()
+    //axios_data()
+    StorageSave.get().then(setalldatas)
+    console.log(JSON.stringify(alldatas))
+    
     setTimeout(() => {
       setRefreshing(false);
     }, 2000);
@@ -108,18 +124,18 @@ const Traffic =({navigation,route}:any)=>{
        
       <ScrollView style={{flex:1,flexDirection:"column"}} refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-        }>
-    
-    
+        }> 
+
     <View style={[{flex:1,margin:10,padding:10,opacity:1}]}>
         <Rbox title={"시간대 별 통계"}/>
-    
-    
- <Chart data={chart_data[0]}/>
+        <Chart data={JSON.parse(alldatas["hourAvg"])}/>
 
-        <Rbox title={" 요일 별 통계"}/>
-       <Chart data={chart_data[1]}/>
+<Rbox title={" 요일 별 통계"}/>
+<Chart data={JSON.parse(alldatas["weekAvg"])}/>
+
+    
  
+  
         </View>
         
         </ScrollView></SafeAreaView>

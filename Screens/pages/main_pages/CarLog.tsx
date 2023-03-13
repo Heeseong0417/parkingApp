@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react"
-import { Button, SafeAreaView, ScrollView, Text, View, Image, RefreshControl } from "react-native"
+import { Button, SafeAreaView, ScrollView, Text, View, Image, RefreshControl, Alert } from "react-native"
 import Animated, { FadeInUp, FadeOutDown, Layout, useAnimatedProps, useAnimatedStyle, useSharedValue, withDelay, withRepeat, withSequence, withSpring, withTiming } from "react-native-reanimated"
 import Svg, { Path } from "react-native-svg"
 import Header from "../header/Header"
@@ -56,6 +56,7 @@ const [refreshing, setRefreshing] = useState(false);
 const axios_data =()=>{
       
   setloading(true)
+  console.log("token !!!!:",token.access_token)
   axios.defaults.headers.common["Authorization"] = `Bearer ${token.access_token}`;
   //setloading((data)=> data = true)
         const Uri = IP+'/parking_list'
@@ -91,7 +92,9 @@ const axios_data =()=>{
     useEffect(() => {TokenDataStorage.get().then(settoken)
       //axios_data()
     }, [])
-    useEffect(() => {axios_data()}, [token])
+    useEffect(() => {
+     
+      axios_data()}, [token])
     return(<>
      <SafeAreaView style={{backgroundColor:"white",flex:1,marginBottom:heightPercentageToDP("10%")}}>
      <Spinner
@@ -105,7 +108,7 @@ const axios_data =()=>{
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }>
     
-    
+  
     <View style={[{flex:1,margin:10,padding:10,opacity:1}]}>
     <Rbox title={"나의 주차 정보"}/>
     <View style={{flex:1,alignItems:"center",justifyContent:"center",marginTop:30}}>

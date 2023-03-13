@@ -76,7 +76,7 @@ const BottomTab =({navigation}:any)=>{
      tabBarPosition="bottom"
      
      style={{backgroundColor:"white"}}
-      screenOptions={{lazy:true, tabBarStyle:{backgroundColor:"#0073F0", position:"absolute",bottom:0,left:0,right:0,borderTopLeftRadius:5,borderTopRightRadius:5},
+      screenOptions={{lazy:false, tabBarStyle:{backgroundColor:"#0073F0", position:"absolute",bottom:0,left:0,right:0,borderTopLeftRadius:5,borderTopRightRadius:5},
       tabBarIconStyle: { width: heightPercentageToDP('10%') },
       tabBarLabelStyle:{opacity:0.8, fontFamily:"GmarketSansTTFMedium",fontWeight:"300"}
       ,tabBarShowLabel:false,tabBarActiveTintColor:"#3D5CFF",

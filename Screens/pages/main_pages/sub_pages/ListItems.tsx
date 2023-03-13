@@ -3,7 +3,7 @@ import { heightPercentageToDP } from "react-native-responsive-screen";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { height_, main, width_ } from "../../../../style/NS";
 import Rbox from "../object/Rbox";
-
+import noimg from "../../../../assets/images/nimg.jpg"
 const ListItems =({navigation,route}:any)=>{
 
     
@@ -29,7 +29,7 @@ return(<>
       <View style={[{width:width_*200,height:width_*180,margin:5,backgroundColor:"white",borderRadius:5},main.shadow]}>
         <View style={[{flex:1,margin:5,height:200,backgroundColor:"white",borderRadius:5},main.shadow]}>
 
-<Image style={{flex:2,resizeMode:"stretch",borderRadius:15}} source={{uri:data["입차_이미지"]}}/>
+<Image style={{flex:2,resizeMode:"stretch",borderRadius:15,width:width_*200}} source={/**{uri:item["입차_이미지"]}**/noimg}/>
           
         </View>  
     </View>
@@ -61,7 +61,7 @@ return(<>
       <View style={[{width:width_*200,height:width_*180,margin:5,backgroundColor:"white",borderRadius:5},main.shadow]}>
         <View style={[{flex:1,margin:5,height:200,backgroundColor:"white",borderRadius:5},main.shadow]}>
 
-<Image style={{flex:2,resizeMode:"stretch",borderRadius:15}} source={{uri:data["출차_이미지"]}}/>
+<Image style={{flex:2,resizeMode:"stretch",borderRadius:15,width:width_*200}} source={/**{uri:item["출차_이미지"]}**/noimg}/>
           
         </View>  
     </View>

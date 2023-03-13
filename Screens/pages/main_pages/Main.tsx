@@ -17,6 +17,9 @@ import axios from "axios"
 import { IP } from "../../../util/ServerPath"
 import Spinner from 'react-native-loading-spinner-overlay';
 //import { useIsFocused } from "@react-navigation/native";
+import toDay from "../main_pages/object/Today_time"
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import StorageSave from "../../../util/StorageSave"
 
 
 const Main =({navigation,route}:any)=>{
@@ -32,7 +35,7 @@ const Main =({navigation,route}:any)=>{
     const [list_data, listdata] = useState({})
     const [loading, setloading] = useState(false)
     const [refreshing, setRefreshing] = useState(false);
-
+    const [alldatas, setalldatas] = useState({})
     const onRefresh = useCallback(() => {
       setRefreshing(true);
       TokenDataStorage.get().then(settoken)
@@ -41,6 +44,7 @@ const Main =({navigation,route}:any)=>{
         setRefreshing(false);
       }, 2000);
     }, []);
+    /** 
     const toDay = () => {
       const now = new Date(); // 현재 시간
       const utcNow = now.getTime() + (now.getTimezoneOffset() * 60 * 1000); // 현재 시간을 utc로 변환한 밀리세컨드값
@@ -60,7 +64,8 @@ const Main =({navigation,route}:any)=>{
          console.log(result)
       return result
       //return year+'/'+month+'/'+day+'/'+dayName+'-'+localTime;
-    }
+    }**/
+    
     const axios_data =()=>{
       
       setloading(true)
@@ -75,6 +80,9 @@ const Main =({navigation,route}:any)=>{
             axios.post(Uri,toDay(),header).then(function (response) {
               console.log("메인데이터")
               const result =response.data
+              StorageSave.set(result).catch(console.error);
+              
+
               setchartdata(data=> data = result["risk"])
               setlist_item(data=> data=[{name:"오늘 입차 대수",value:result["in_"]},{name:"오늘 출차 대수",value:result["out_"]},{name:"총 차량 대수",value:result["all_"]},{name:"교통량",value:result["traffic"]}])
               //console.log(JSON.stringify(response.data))
@@ -100,6 +108,7 @@ const Main =({navigation,route}:any)=>{
         
         }
     useEffect(() => {TokenDataStorage.get().then(settoken)
+      
       //axios_data()
     }, [])
     useEffect(() => {axios_data()}, [token])
@@ -132,7 +141,9 @@ const Main =({navigation,route}:any)=>{
 <Header nav={navigation.reset} route={route} subtitle={"공동 주택 주차 관제 시스템"}/>
    
   <ScrollView style={{flex:1,flexDirection:"column"}}  refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
+<Text>
 
+</Text>
 <View style={[{flex:1,borderRadius:5,margin:10,padding:10,opacity:1,borderWidth:0.1}]}>
 <Text style={{margin:10,fontWeight:"bold",color:"black",opacity:0.8}}>교통 위험도</Text>
 <View style={{flexDirection:"row",flexWrap:"nowrap",margin:10}}>

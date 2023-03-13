@@ -17,6 +17,8 @@ import risk from "../../../assets/images/risk.png"
 import axios from "axios"
 import TokenDataStorage from "../../../util/TokenDataStorage"
 import { IP } from "../../../util/ServerPath"
+import toDay from "./object/Today_time"
+import StorageSave from "../../../util/StorageSave"
 
 const Safety =({navigation,route}:any)=>{
 
@@ -26,10 +28,12 @@ const Safety =({navigation,route}:any)=>{
   const [list_data, listdata] = useState({})
   const [loading, setloading] = useState(false)
   const [list_item, setlist_item] = useState(0)
+  const [alldatas, setalldatas] = useState({risk:0})
   const onRefresh = useCallback(() => {
     setRefreshing(true);
     TokenDataStorage.get().then(settoken)
-    axios_data()
+    StorageSave.get().then(setalldatas)
+    //axios_data()
     setTimeout(() => {
       setRefreshing(false);
     }, 2000);
@@ -45,10 +49,12 @@ const Safety =({navigation,route}:any)=>{
      
           
           
-          axios.post(Uri,{userId:"data"},header).then(function (response) {
+          axios.post(Uri,toDay(),header).then(function (response) {
             const result =response.data
+            StorageSave.set(result).catch(console.error);
+            /** 
             setlist_item(data=> data  = result["risk"])
-            //console.log(JSON.stringify(response.data))
+            //console.log(JSON.stringify(response.data))**/
             setTimeout(function() {
                setloading(false)
             }, 500);
@@ -71,9 +77,10 @@ const Safety =({navigation,route}:any)=>{
       
       }
   useEffect(() => {TokenDataStorage.get().then(settoken)
+    StorageSave.get().then(setalldatas)
     //axios_data()
   }, [])
-  useEffect(() => {axios_data()}, [token])
+useEffect(() => {axios_data()}, [token])
     return(<>
        <SafeAreaView style={{backgroundColor:"white",flex:1,marginBottom:heightPercentageToDP("10%")}}>
     
@@ -89,16 +96,17 @@ const Safety =({navigation,route}:any)=>{
     <View style={{flex:1,alignItems:"center",justifyContent:"center",marginTop:30}}>
 <Text>
 
-  fdfdfd{list_item}
+
 </Text>
 <CircularProgress
-  value={list_item}
+  value={alldatas["risk"]*100}
   radius={120}
   duration={2000}
+  showProgressValue={false}
   progressValueColor={'black'}
   maxValue={100}
-  activeStrokeColor={list_item ==1 ?"red":list_item<1||list_item>0.8?"yellow":"green"}
-  title={list_item ==1 ?"고위험":list_item<1&&list_item>0.7?"위험":"안전"}
+  activeStrokeColor={alldatas["risk"] ==1 ?"red":alldatas["risk"]<1||alldatas["risk"]>0.8?"yellow":"green"}
+  title={alldatas["risk"] ==1 ?"고위험":alldatas["risk"]<1&&alldatas["risk"]>0.7?"위험":"안전"}
   titleColor={'black'}
   titleStyle={{fontWeight: 'bold'}}
 />
