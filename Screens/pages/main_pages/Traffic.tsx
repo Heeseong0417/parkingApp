@@ -19,11 +19,15 @@ import axios from "axios"
 import TokenDataStorage from "../../../util/TokenDataStorage"
 import toDay from "./object/Today_time"
 import StorageSave from "../../../util/StorageSave"
+import Chart_test from "./object/Chart_hour"
+import Chart_hour from "./object/Chart_hour"
+import Chart_day from "./object/Chart_day"
+import Chart_predict from "./object/Chart_predict"
 const Traffic =({navigation,route}:any)=>{
 const rotation = useSharedValue(0);
     //const [chart_data, setchart_data] = useState([{x:"1",y:10},{x:"2",y:20},{x:"3",y:30},{x:"4",y:20},{x:"5",y:40},{x:"6",y:40},{x:"7",y:40},{x:"8",y:40},{x:"9",y:40},{x:"10",y:40},{x:"11",y:40},{x:"12",y:40},{x:"13",y:40},{x:"14",y:40},{x:"15",y:40},{x:"16",y:40},{x:"17",y:40},{x:"18",y:40},{x:"19",y:40},{x:"20",y:40},{x:"21",y:40},{x:"22",y:40},{x:"23",y:40},{x:"24",y:40}])
 const [chart_data, setchart_data] = useState([[{x:"0시",y:10,index:0}],[{x:"월요일",y:0}]])
-const [alldatas, setalldatas] = useState({"hourAvg":'[{"x":0,"y":0}]',"weekAvg":'[{"x":"월요일","y":0}]'})
+const [alldatas, setalldatas] = useState({"hourAvg":'[{"x":0,"y":0}]',"weekAvg":'[{"x":"월요일","y":0}]',"hourAvgout":'[{"x":0,"y":0}]',"weekAvgout":'[{"x":"월요일","y":0}]',"predict":"[0,0]"})
 
 const [refreshing, setRefreshing] = useState(false);
 const [token, settoken] = useState({access_token:"",refresh_token:"",userId:""})
@@ -68,7 +72,7 @@ const [loading, setloading] = useState(false)
           })
 
           
-        
+         
           
       
       
@@ -127,15 +131,20 @@ const [loading, setloading] = useState(false)
         }> 
 
     <View style={[{flex:1,margin:10,padding:10,opacity:1}]}>
+    <Rbox title={"교통량 예측"}/>
+
         <Rbox title={"시간대 별 통계"}/>
-        <Chart data={JSON.parse(alldatas["hourAvg"])}/>
+       <Chart_predict data={JSON.parse(alldatas["predict"])} title={"시간대 별 예측"}/>
+       <Text>
 
+       </Text>
+       
+        <Chart_hour data={JSON.parse(alldatas["hourAvg"])}title={"오늘 입차 대수"}/>
+        <Chart_hour data={JSON.parse(alldatas["hourAvgout"])}title={"오늘 출차 대수"}/>
 <Rbox title={" 요일 별 통계"}/>
-<Chart data={JSON.parse(alldatas["weekAvg"])}/>
-
-    
- 
-  
+{/**<Chart data={JSON.parse(alldatas["weekAvg"])}/>**/}
+<Chart_day data={JSON.parse(alldatas["weekAvg"])}title={"요일별 입차 대수"}/>
+<Chart_day data={JSON.parse(alldatas["weekAvgout"])}title={"요일별 출차 대수"}/>  
         </View>
         
         </ScrollView></SafeAreaView>

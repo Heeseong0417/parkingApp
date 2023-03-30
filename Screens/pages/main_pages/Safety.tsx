@@ -19,16 +19,18 @@ import TokenDataStorage from "../../../util/TokenDataStorage"
 import { IP } from "../../../util/ServerPath"
 import toDay from "./object/Today_time"
 import StorageSave from "../../../util/StorageSave"
+import Chart_risk from "./object/Chart_risk"
+import Chart_riskcar from "./object/Chart_riskcar"
 
 const Safety =({navigation,route}:any)=>{
 
 
   const [refreshing, setRefreshing] = useState(false);
   const [token, settoken] = useState({access_token:"",refresh_token:"",userId:""})
-  const [list_data, listdata] = useState({})
+  const [list_data, listdata] = useState({"h0":0,"h1":0,"h2":0,"h3":0,"h4":0,"h5":0,"h6":0,"h7":0,"h8":0,"h9":0,"h10":0,"h11":0,"h12":0,"h13":0,"h14":0,"h15":0,"h16":0,"h17":0,"h18":0,"h19":0,"h20":0,"h21":0,"h22":0,"h23":0})
   const [loading, setloading] = useState(false)
   const [list_item, setlist_item] = useState(0)
-  const [alldatas, setalldatas] = useState({risk:0})
+  const [alldatas, setalldatas] = useState({risk:0,"totalRisk":'[{"x":"0 시","y":0}]'})
   const onRefresh = useCallback(() => {
     setRefreshing(true);
     TokenDataStorage.get().then(settoken)
@@ -44,9 +46,10 @@ const Safety =({navigation,route}:any)=>{
     axios.defaults.headers.common["Authorization"] = `Bearer ${token.access_token}`;
     //setloading((data)=> data = true)
           const Uri = IP+'/main_pages'
+          const Uri2 = IP+'/safety_risk'
          // const Uri_p = 'http://10.0.2.2:8080/parent'
          let header ={headers:{"Content-Type":"application/json; charset=utf-8"}}
-     
+
           
           
           axios.post(Uri,toDay(),header).then(function (response) {
@@ -69,7 +72,29 @@ const Safety =({navigation,route}:any)=>{
            //Alert.alert("에러가 발생하였습니다! 다시 로그인해주세요") 
            
           })
-      
+          axios.post(Uri2,toDay(),header).then(function (response) {
+            const result =response.data[0]
+            delete result.date
+            delete result.riskcount
+            console.log("result risk : ",result)
+            listdata(data=>data=result)
+            /** 
+            setlist_item(data=> data  = result["risk"])
+            //console.log(JSON.stringify(response.data))**/
+            setTimeout(function() {
+               setloading(false)
+            }, 500);
+           
+          }).catch(function (error) {
+            console.log(error);
+            setloading(false)
+            setTimeout(function() {
+           //   axios_data()
+            }, 3000);
+            
+           //Alert.alert("에러가 발생하였습니다! 다시 로그인해주세요") 
+           
+          })
           
         
           
@@ -95,8 +120,6 @@ useEffect(() => {axios_data()}, [token])
     <Rbox title={" 교통 위험도"}/>
     <View style={{flex:1,alignItems:"center",justifyContent:"center",marginTop:30}}>
 <Text>
-
-
 </Text>
 <CircularProgress
   value={alldatas["risk"]*100}
@@ -105,20 +128,19 @@ useEffect(() => {axios_data()}, [token])
   showProgressValue={false}
   progressValueColor={'black'}
   maxValue={100}
-  activeStrokeColor={alldatas["risk"] ==1 ?"red":alldatas["risk"]<1||alldatas["risk"]>0.8?"yellow":"green"}
-  title={alldatas["risk"] ==1 ?"고위험":alldatas["risk"]<1&&alldatas["risk"]>0.7?"위험":"안전"}
+  activeStrokeColor={alldatas["risk"] ==1 ?"green":alldatas["risk"]==2?"orange":alldatas["risk"]==3?"yellow":"red"}
+  title={alldatas["risk"] ==1 ?"안전":alldatas["risk"]==2?"주의":alldatas["risk"]==3?"위험":"심각"}
   titleColor={'black'}
   titleStyle={{fontWeight: 'bold'}}
 />
 
 </View>
 
-<Rbox title={"교통 위험도 산정 방법"}/>
-<ScrollView horizontal={true} style={{flex:1}}>
+<Rbox title={"시간별, 위험도 및 위험차량 대수"}/>
 
- 
-</ScrollView>
-<Image source={risk} style={{resizeMode:"stretch",flex:1,width:"100%"}}/>   
+<Chart_risk data={JSON.parse(alldatas["totalRisk"])} title ={"시간별 위험도"}/>
+<Chart_riskcar data={list_data} title ={"시간별 위험 차량 대수"}/>
+
     </View>
     </ScrollView></SafeAreaView>
     </>)

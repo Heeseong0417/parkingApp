@@ -3,6 +3,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import { height_, main, width_ } from "../../../../style/NS";
 import AutoHeightImage from "react-native-auto-height-image";
 import noimg from "../../../../assets/images/nimg.jpg"
+import car from "../../../../assets/images/car.png"
 const Datalist =({list_item,navigation}:any)=>{
 
 
@@ -16,7 +17,7 @@ const Datalist =({list_item,navigation}:any)=>{
       }} style={[{flex:1, flexDirection:"column",justifyContent:"space-between", borderRadius:20,backgroundColor:"#308FFF",marginBottom:10,margin:3,padding:10,height:width_*100},main.shadow]}>
        <View style={{flex:1, flexDirection:"row", justifyContent:"space-between",alignItems:"center"}}>
         <View style={[{width:width_*130,height:width_*90,margin:5,marginLeft:1, backgroundColor:"white",borderRadius:15},main.shadow]}>
-        <Image style={{flex:1,resizeMode:"stretch",borderRadius:15,width:width_*130}} source={/**{uri:item["입차_이미지"]}**/noimg}/> 
+        <Image style={{flex:1,resizeMode:"stretch",borderRadius:15,width:width_*130}} source={/**{uri:item["입차_이미지"]}**/car}/> 
 
           
         </View>
@@ -41,7 +42,7 @@ const Datalist =({list_item,navigation}:any)=>{
       }} style={[{flex:1, flexDirection:"column",justifyContent:"space-between", borderRadius:20,backgroundColor:"#308FFF",marginBottom:10,margin:3,padding:10,height:width_*100},main.shadow]}>
        <View style={{flex:1, flexDirection:"row", justifyContent:"space-between",alignItems:"center"}}>
         <View style={[{width:width_*130,height:width_*90,margin:5,marginLeft:1, backgroundColor:"white",borderRadius:15},main.shadow]}>
-        <Image style={{flex:1,resizeMode:"stretch",borderRadius:15,width:width_*130}} source={/**{uri:item["출차_이미지"]}**/noimg}/> 
+        <Image style={{flex:1,resizeMode:"stretch",borderRadius:15,width:width_*130}} source={/**{uri:item["출차_이미지"]}**/car}/> 
 
           
         </View>

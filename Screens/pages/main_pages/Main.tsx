@@ -84,7 +84,7 @@ const Main =({navigation,route}:any)=>{
               
 
               setchartdata(data=> data = result["risk"])
-              setlist_item(data=> data=[{name:"오늘 입차 대수",value:result["in_"]},{name:"오늘 출차 대수",value:result["out_"]},{name:"총 차량 대수",value:result["all_"]},{name:"교통량",value:result["traffic"]}])
+              setlist_item(data=> data=[{name:"오늘 입차 대수",value:result["in_"]},{name:"오늘 출차 대수",value:result["out_"]},{name:"총 차량 대수",value:result["out_"]+result["in_"]},{name:"교통량",value:result["traffic"]}])
               //console.log(JSON.stringify(response.data))
               setTimeout(function() {
                  setloading(false)
@@ -144,12 +144,13 @@ const Main =({navigation,route}:any)=>{
 <Text>
 
 </Text>
+
 <View style={[{flex:1,borderRadius:5,margin:10,padding:10,opacity:1,borderWidth:0.1}]}>
 <Text style={{margin:10,fontWeight:"bold",color:"black",opacity:0.8}}>교통 위험도</Text>
 <View style={{flexDirection:"row",flexWrap:"nowrap",margin:10}}>
 
-<Progress.Bar progress={chartdata ==0 ?0.1:chartdata} color={chartdata ==0 ? "green":chartdata>0 && chartdata<0.7 ? "yellow":"red"} style={[{flex:1,margin:10},main.shadow]} animated	={true} />
-<Text >{chartdata ==0 ? "저위험":chartdata>0 && chartdata<0.7 ? "중위험":"고위험"} </Text>
+<Progress.Bar progress={1} color={chartdata ==1 ? "green":chartdata==2 ? "orange":chartdata==3?"yellow":"red"} style={[{flex:1,margin:10},main.shadow]} animated	={true} />
+<Text >{chartdata ==1 ? "안전":chartdata==2 ? "주의" : chartdata==3?"위험":"심각"} </Text>
 </View>
 </View>
 <Text style={{margin:10,marginLeft:30,fontWeight:"bold",color:"black",opacity:0.8}}>교통량</Text>

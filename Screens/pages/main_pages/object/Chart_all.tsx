@@ -4,19 +4,8 @@ import { main, width_ } from "../../../../style/NS"
 
 
 const Chart =({data}:any)=>{
-const print_=(value: any[])=>{
 
-const hours = Array.from({length: 24}, (_, i) => i);
-const result = hours.map(hour => {
-  const hourData = value.find(value_ => value_.x === `${hour} 시`);
 
-  return hourData || {x: `${hour}시`, y: 0};
-});
-
-const x = result.map(hour => hour.x);
-const y = result.map(hour => hour.y);
-  return result
-}
 
     return(<>
     <View style={[{flexDirection:"row",flexWrap:"nowrap",margin:10,borderRadius:5,backgroundColor:"white",justifyContent:"center",alignItems:"center"},main.shadow]}>
@@ -36,7 +25,7 @@ domainPadding={50}
 containerComponent={
   <VictoryZoomContainer responsive={false}
     zoomDimension="x"
-    
+    zoomDomain={data}
 
   />
 }
@@ -58,19 +47,21 @@ containerComponent={
         />
          <VictoryAxis 
          
-         tickFormat={(t,i)=>(i)%2==1?t: (i)==0? t:""}
+         tickFormat={(t,i)=>(i)%2==1?t:t}
          
          />
 <VictoryBar
 cornerRadius={5}
-style={{ data: { fill: "#b8b8d2" } }}
-data={print_(data)}/>
+ style={{ data: { fill: "#b8b8d2" } }}
+ 
+ data={data}
+/>
 <VictoryLine
     style={{
       data: { stroke: "#c43a31" },
       parent: { border: "1px solid #ccc"}
     }}
-    data={print_(data)}
+    data={data}
     labels={({ datum }) => datum.y%3==0?datum.y:""}
    
   />

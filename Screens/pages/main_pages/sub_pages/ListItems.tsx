@@ -3,7 +3,8 @@ import { heightPercentageToDP } from "react-native-responsive-screen";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { height_, main, width_ } from "../../../../style/NS";
 import Rbox from "../object/Rbox";
-import noimg from "../../../../assets/images/nimg.jpg"
+import noimg from "../../../../assets/images/car.png"
+import car from "../../../../assets/images/car.png"
 const ListItems =({navigation,route}:any)=>{
 
     
